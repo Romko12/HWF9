@@ -48,9 +48,9 @@ namespace HWF9
                 pictureBox1.BringToFront();
                 PetNameLabel.BringToFront();
                 initUI();
-                FeedButton.Enabled = false;
-                SleepButton.Enabled = false;
-                PlayButton.Enabled = false;
+                FeedButton.Enabled = true;
+                SleepButton.Enabled = true;
+                PlayButton.Enabled = true;
             }
         }
 

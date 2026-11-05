@@ -19,9 +19,9 @@ namespace HWF9
 
         public Pet(string name, int petVar)
         {
-            EnergyMax = EnergyCurrent = 100;
+            EnergyMax = EnergyCurrent = 60;
             FoodMax = FoodCurrent = 100;
-            HappynessMax = HappynessCurrent = 100;
+            HappynessMax = HappynessCurrent = 20;
         }
 
         public double getEnergy()
