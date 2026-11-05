@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 
 namespace HWF9
@@ -26,6 +27,9 @@ namespace HWF9
             PetNameLabel.Text = "";
             tamagochiTimer.Interval = 60;
             tamagochiTimer.Tick += Tick;
+            FeedButton.Enabled = false;
+            SleepButton.Enabled = false;
+            PlayButton.Enabled = false;
 
         }
 
@@ -44,7 +48,9 @@ namespace HWF9
                 pictureBox1.BringToFront();
                 PetNameLabel.BringToFront();
                 initUI();
-
+                FeedButton.Enabled = false;
+                SleepButton.Enabled = false;
+                PlayButton.Enabled = false;
             }
         }
 
@@ -61,30 +67,39 @@ namespace HWF9
                 pictureBox1.BringToFront();
                 PetNameLabel.BringToFront();
                 initUI();
+                FeedButton.Enabled = true;
+                SleepButton.Enabled = true;
+                PlayButton.Enabled = true;
             }
         }
 
         private void Tick(Object source, EventArgs e)
         {
+            // віднімання показників кожні 60 мілісекунд
             if (pet.getHappyness() > 0)
             {
+                HappinessProgressBar.BringToFront();
                 pet.decreaseHungry(0.05);
                 pet.decreaseEnergy(0.05);
                 pet.decreaseHappyness(0.05);
             }
             else if (pet.getHappyness() == 0)
             {
-                MessageBox.Show("ur pet is unhappy, he will lose more energy", "warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                pet.decreaseEnergy(0.1);
+                WarningLabel.BringToFront();
+                WarningLabel.Text = "ur pet is unhappy, he will lose more energy";
+                pet.decreaseEnergy(0.15);
                 pet.decreaseHungry(0.05);
             }
+
+            // показ картинок petVar == 1 - собака, petVar == 2 - кіт
 
             if (pet.getEnergy() == 0 && petVar == 1 || pet.getFood() == 0 && petVar == 1)
             {
                 this.pictureBox1.Image = global::HWF9.Properties.Resources.deaddog;
                 tamagochiTimer.Enabled = false;
+                initUI();
 
-                DialogResult dr = MessageBox.Show("Ur " + PetNameLabel.Text + "is dead!!!", "GAME OVER!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                DialogResult dr = MessageBox.Show("Ur pet is dead!!!", "GAME OVER!", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 if (dr == DialogResult.OK)
                 {
@@ -97,8 +112,9 @@ namespace HWF9
             {
                 this.pictureBox1.Image = global::HWF9.Properties.Resources.deadcat;
                 tamagochiTimer.Enabled = false;
+                initUI();
 
-                DialogResult dr = MessageBox.Show("Ur " + PetNameLabel.Text + "is dead!!!", "GAME OVER!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                DialogResult dr = MessageBox.Show("Ur pet is dead!!!", "GAME OVER!", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 if (dr == DialogResult.OK)
                 {
@@ -130,6 +146,7 @@ namespace HWF9
             initUI();
         }
 
+
         private void initUI()
         {
 
@@ -137,11 +154,32 @@ namespace HWF9
             this.HappinessProgressBar.Value = Convert.ToInt32(pet.getHappyness());
             this.EnergyProgressBar.Value = Convert.ToInt32(pet.getEnergy());
 
+            if (pet.getFood() <= 30)
+                CBP.ChangeProgressBarColor(FoodProgressBar, 2);
+            else if (pet.getFood() <= 60)
+                CBP.ChangeProgressBarColor(FoodProgressBar, 3);
+            else
+                CBP.ChangeProgressBarColor(FoodProgressBar, 1);
+
+            if (pet.getHappyness() <= 30)
+                CBP.ChangeProgressBarColor(HappinessProgressBar, 2);
+            else if (HappinessProgressBar.Value <= 60)
+                CBP.ChangeProgressBarColor(HappinessProgressBar, 3);
+            else
+                CBP.ChangeProgressBarColor(HappinessProgressBar, 1);
+
+            if (pet.getEnergy() <= 30)
+                CBP.ChangeProgressBarColor(EnergyProgressBar, 2);
+            else if (pet.getEnergy() <= 60)
+                CBP.ChangeProgressBarColor(EnergyProgressBar, 3);
+            else
+                CBP.ChangeProgressBarColor(EnergyProgressBar, 1);
+
         }
 
         private void FeedButton_Click(object sender, EventArgs e)
         {
-            pet.increaseEnergy(5);
+            pet.increaseEnergy(1);
             pet.increaseHungry(10);
         }
 

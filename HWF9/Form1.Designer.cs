@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TextBox NameBox;
             this.namingLabel = new System.Windows.Forms.Label();
             this.DogButton = new System.Windows.Forms.Button();
             this.CatButton = new System.Windows.Forms.Button();
@@ -44,7 +43,8 @@
             this.FeedButton = new System.Windows.Forms.Button();
             this.SleepButton = new System.Windows.Forms.Button();
             this.PlayButton = new System.Windows.Forms.Button();
-            NameBox = new System.Windows.Forms.TextBox();
+            this.WarningLabel = new System.Windows.Forms.Label();
+            this.NameBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -57,14 +57,6 @@
             this.namingLabel.TabIndex = 0;
             this.namingLabel.Text = "Name ur pet 3-10 symbols";
             this.namingLabel.UseCompatibleTextRendering = true;
-            // 
-            // NameBox
-            // 
-            NameBox.Location = new System.Drawing.Point(35, 126);
-            NameBox.Multiline = true;
-            NameBox.Name = "NameBox";
-            NameBox.Size = new System.Drawing.Size(209, 47);
-            NameBox.TabIndex = 1;
             // 
             // DogButton
             // 
@@ -205,12 +197,34 @@
             this.PlayButton.UseVisualStyleBackColor = true;
             this.PlayButton.Click += new System.EventHandler(this.PlayButton_Click);
             // 
+            // WarningLabel
+            // 
+            this.WarningLabel.BackColor = System.Drawing.Color.White;
+            this.WarningLabel.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.WarningLabel.ForeColor = System.Drawing.Color.Red;
+            this.WarningLabel.Location = new System.Drawing.Point(297, 104);
+            this.WarningLabel.Name = "WarningLabel";
+            this.WarningLabel.Size = new System.Drawing.Size(264, 35);
+            this.WarningLabel.TabIndex = 17;
+            this.WarningLabel.Text = "label1";
+            this.WarningLabel.UseCompatibleTextRendering = true;
+            // 
+            // NameBox
+            // 
+            this.NameBox.Font = new System.Drawing.Font("Comic Sans MS", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.NameBox.Location = new System.Drawing.Point(26, 126);
+            this.NameBox.Multiline = true;
+            this.NameBox.Name = "NameBox";
+            this.NameBox.Size = new System.Drawing.Size(228, 45);
+            this.NameBox.TabIndex = 18;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(20F, 45F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(158)))), ((int)(((byte)(109)))));
             this.ClientSize = new System.Drawing.Size(569, 357);
+            this.Controls.Add(this.NameBox);
             this.Controls.Add(this.PlayButton);
             this.Controls.Add(this.SleepButton);
             this.Controls.Add(this.FeedButton);
@@ -224,9 +238,9 @@
             this.Controls.Add(this.PetNameLabel);
             this.Controls.Add(this.CatButton);
             this.Controls.Add(this.DogButton);
-            this.Controls.Add(NameBox);
             this.Controls.Add(this.namingLabel);
             this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.WarningLabel);
             this.Font = new System.Drawing.Font("Comic Sans MS", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(113)))), ((int)(((byte)(103)))), ((int)(((byte)(124)))));
             this.Margin = new System.Windows.Forms.Padding(10);
@@ -239,7 +253,6 @@
         }
 
         #endregion
-
         private System.Windows.Forms.Label namingLabel;
         private System.Windows.Forms.Button DogButton;
         private System.Windows.Forms.Button CatButton;
@@ -255,6 +268,8 @@
         private System.Windows.Forms.ProgressBar FoodProgressBar;
         private System.Windows.Forms.ProgressBar HappinessProgressBar;
         private System.Windows.Forms.ProgressBar EnergyProgressBar;
+        private System.Windows.Forms.Label WarningLabel;
+        private System.Windows.Forms.TextBox NameBox;
     }
 }
 

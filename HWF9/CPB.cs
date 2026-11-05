@@ -1,27 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.Drawing;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace HWF9
+namespace HWF9 // Додаємо простір назв вашого проекту
 {
-    public static class CPB
+    public static class CBP
     {
-
-
-
-    
         [DllImport("user32.dll", CharSet = CharSet.Auto)]
-        private static extern IntPtr SendMessage(IntPtr hWnd, int msg, IntPtr wParam, IntPtr lParam);
-        private const int PBM_SETSTATE = 0x0410;
+        private static extern IntPtr SendMessage(IntPtr hWnd, int msg, int wParam, int lParam);
 
-        public static void SetState(ProgressBar pBar, int state)
+        public static void ChangeProgressBarColor(ProgressBar pBar, int colorCode)
         {
-            SendMessage(pBar.Handle, PBM_SETSTATE, (IntPtr)state, IntPtr.Zero);
+            SendMessage(pBar.Handle, 0x410, colorCode, 0);
         }
-    
     }
 }
